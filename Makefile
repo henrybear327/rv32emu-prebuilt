@@ -45,11 +45,13 @@ ifneq ($(filter $(OPT_LEVEL), 2),)
 all: build-O2
 endif
 
+RV32_EXT_COREMARK ?= rv32im
+
 all:
 	$(Q)$(MAKE) -C src/asm-hello BUILD_DIR="$(BUILD_DIR)" RV32_EXT=$(RV32_EXT) OPT_LEVEL="$(OPT_LEVEL)" all
 	$(Q)$(MAKE) -C src/cc BUILD_DIR="$(BUILD_DIR)" RV32_EXT=$(RV32_EXT) OPT_LEVEL="$(OPT_LEVEL)" all
 	$(Q)$(MAKE) -C src/ansibench/nbench BUILD_DIR="$(BUILD_DIR)" RV32_EXT=$(RV32_EXT) OPT_LEVEL="$(OPT_LEVEL)" all
-	$(Q)$(MAKE) -C src/ansibench/coremark BUILD_DIR="$(BUILD_DIR)" RV32_EXT=$(RV32_EXT) OPT_LEVEL="$(OPT_LEVEL)" all
+	$(Q)$(MAKE) -C src/ansibench/coremark BUILD_DIR="$(BUILD_DIR)" RV32_EXT=$(RV32_EXT_COREMARK) OPT_LEVEL="$(OPT_LEVEL)" all
 	$(Q)$(MAKE) -C src/rv8-bench BUILD_DIR="$(BUILD_DIR)" RV32_EXT=$(RV32_EXT) OPT_LEVEL="$(OPT_LEVEL)" all
 
 include mk/common.mk
